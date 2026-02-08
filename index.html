@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You Salini 💖</title>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffdde1, #ffc1e3);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+    }
+
+    @keyframes gradientBG {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+        color: #ff3366;
+        margin-bottom: 20px;
+        font-size: 3rem;
+        animation: bounce 2s infinite;
+        text-shadow: 2px 2px #fff;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-15px); }
+    }
+
+    p {
+        font-size: 1.5rem;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px #fff;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    button {
+        padding: 15px 40px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    #yesBtn {
+        background-color: #28a745;
+        color: white;
+    }
+
+    #yesBtn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 25px rgba(40,167,69,0.5);
+    }
+
+    #noBtn {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    #noBtn:hover {
+        animation: shake 0.3s;
+    }
+
+    @keyframes shake {
+        0% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        50% { transform: translateX(5px); }
+        75% { transform: translateX(-5px); }
+        100% { transform: translateX(0); }
+    }
+
+    #finalMessage {
+        display: none;
+        margin-top: 30px;
+        animation: fadeIn 1s forwards;
+        text-align: center;
+    }
+
+    #finalMessage img {
+        width: 300px;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: red;
+        transform: rotate(45deg);
+        animation: float 6s linear infinite;
+        opacity: 0.8;
+        z-index: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: red;
+        border-radius: 50%;
+    }
+
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
+
+    @keyframes float {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+        100% { transform: translateY(-1000px) rotate(45deg); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>I Love You Salini 💖</h1>
+<p>Do you love me?</p>
+
+<div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+</div>
+
+<div id="finalMessage">
+    <h2>Best ever decision! 😍</h2>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Love Gif">
+</div>
+
+<script>
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const finalMessage = document.getElementById('finalMessage');
+
+// Yes button click
+yesBtn.addEventListener('click', () => {
+    yesBtn.style.display = 'none';
+    noBtn.style.display = 'none';
+    finalMessage.style.display = 'block';
+});
+
+// Floating hearts
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}
+setInterval(createHeart, 300);
+
+// Move No button randomly when hovered
+noBtn.addEventListener('mouseenter', () => {
+    noBtn.style.position = 'fixed'; // stays in viewport
+    const maxX = window.innerWidth - noBtn.offsetWidth - 10;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 10;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+});
+</script>
+
+</body>
+</html>
